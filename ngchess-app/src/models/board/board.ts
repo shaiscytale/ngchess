@@ -3,6 +3,7 @@ import { Bishop } from "../pieces/Bishop";
 import { King } from "../pieces/King";
 import { Knight } from "../pieces/Knight";
 import { Pawn } from "../pieces/Pawn";
+import { Piece } from "../pieces/Piece";
 import { Queen } from "../pieces/Queen";
 import { Rook } from "../pieces/Rook";
 
@@ -52,6 +53,14 @@ export class Board {
     this.squares[6][5] = new Pawn(Color.black);
     this.squares[6][6] = new Pawn(Color.black);
     this.squares[6][7] = new Pawn(Color.black);
+  }
+
+  public getPiece(x: number, y: number) : Piece | null {
+    return this.squares[x][y];
+  }
+
+  public isValidPosition(x: number, y: number){
+    return x >= 0 && x <= 7 && y >= 0 && y <= 7;
   }
 
   public displayBoard() {
