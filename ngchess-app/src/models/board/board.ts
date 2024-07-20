@@ -63,6 +63,9 @@ export class Board {
     if(piece === null)
       throw new Error('No piece to move');
 
+    this.squares[from.x][from.y] = null;
+    this.squares[to.x][to.y] = piece;
+
     piece.move(to.x, to.y);
   }
 
