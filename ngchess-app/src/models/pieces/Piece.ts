@@ -38,7 +38,7 @@ export abstract class Piece {
   }
 
   abstract getMoves(board: Board): Move[];
-  abstract move(move: Move): void;
+  abstract move(x: number, y: number): void;
 
   getSymbol(): string {
     return this.color === Color.white ? this.code.toUpperCase() : this.code.toLowerCase();

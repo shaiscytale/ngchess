@@ -14,10 +14,10 @@ export class Rook extends Piece {
 
     let possibleMoves: Move[] = [];
     const directions = [
-      { dx: 1, dy: 0 }, // Droite
-      { dx: -1, dy: 0 }, // Gauche
-      { dx: 0, dy: 1 }, // Bas
-      { dx: 0, dy: -1 } // Haut
+      { dx: 1, dy: 0 }, // right
+      { dx: -1, dy: 0 }, // left
+      { dx: 0, dy: 1 }, // bot
+      { dx: 0, dy: -1 } // top
     ];
 
     const currentPosition = this.position;
@@ -54,7 +54,7 @@ export class Rook extends Piece {
 
     return possibleMoves;
   }
-  override move(move: Move): void {
+  override move(x: number, y: number): void {
     throw new Error("Method not implemented.");
   }
 }

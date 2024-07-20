@@ -11,7 +11,7 @@ export class Knight extends Piece {
   override getMoves(board: Board): Move[] {
     throw new Error("Method not implemented.");
   }
-  override move(move: Move): void {
+  override move(x: number, y: number): void {
     throw new Error("Method not implemented.");
   }
 }
