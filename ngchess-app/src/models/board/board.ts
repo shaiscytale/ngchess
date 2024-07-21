@@ -16,6 +16,10 @@ export class Board {
     this.resetBoard();
   }
 
+  public getSquares() {
+    return this.squares;
+  }
+
   private resetBoard() {
     // place pieces - white side
     this.squares[0][0] = new Rook(Color.white);
