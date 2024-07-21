@@ -10,6 +10,8 @@ import { Rook } from "../pieces/Rook";
 
 export class Board {
   private squares: (King | Queen | Rook | Bishop | Knight | Pawn | null)[][];
+  private selectedPiece: Piece | null = null;
+
 
   constructor() {
     this.squares = Array(8).fill(null).map(() => Array(8).fill(null));
@@ -59,18 +61,15 @@ export class Board {
     this.squares[6][7] = new Pawn(Color.white);
   }
 
-  public makeMove(move: Move){
-
-  }
-  public movePiece(from: Position, to: Position){
-    let piece = this.getPiece(from.x, from.y);
+  public movePiece(move: Move) : void {
+    let piece = this.getPiece(move.fromX, move.fromY);
     if(piece === null)
       throw new Error('No piece to move');
 
-    this.squares[from.x][from.y] = null;
-    this.squares[to.x][to.y] = piece;
+    this.squares[move.fromX][move.fromY] = null;
+    this.squares[move.toX][move.toY] = piece;
 
-    piece.move(to.x, to.y);
+    // piece.move(move.toX, move.toY);
   }
 
   isEmpty(x: number, y: number): boolean {
@@ -83,6 +82,10 @@ export class Board {
     const piece = this.squares[x][y];
     console.log(x, y, this.squares);
     return piece !== null && piece.color !== color;
+  }
+
+  public selectPiece(piece: Piece | null) : void {
+    this.selectedPiece = piece;
   }
 
   public getPiece(x: number, y: number) : Piece | null {

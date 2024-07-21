@@ -46,26 +46,56 @@ export class ChessBoardComponent implements OnInit {
     return this.availableMoves.some(move => move.toX === x && move.toY === y);
   }
 
+  handleSquareClick(x: number, y: number): void {
+    if (this.isSquareAvailableMove(x, y)) {
+      this.movePiece(x, y);
+    } else {
+      this.selectSquare(x, y);
+    }
+  }
+
   selectSquare(x: number, y: number): void {
     console.log("selectSquare", x, y);
     if (this.selectedSquare && this.selectedSquare.x === x && this.selectedSquare.y === y) {
-      this.selectedSquare = null;
       this.unselectPiece();
     } else {
       const piece = this.board.getPiece(x, y);
-      if(piece === null || piece.color !== this.turn)
+      if(piece === null)
         return;
+      if(piece.color !== this.turn) {
+        console.log("Not your turn");
+        return;
+      }
 
-      this.selectedSquare = { x, y };
       this.setSelectedPiece(piece, x, y);
     }
   }
 
+  public movePiece(x: number, y: number): void {
+    console.log("movePiece", x, y);
+    if(this.selectedSquare === null || this.availableMoves.length === 0)
+      return;
+
+    const move = this.availableMoves.find(move => move.toX === x && move.toY === y);
+    if(move === undefined)
+      return;
+
+    this.board.movePiece(move);
+    this.turn = this.turn === Color.white ? Color.black : Color.white;
+    this.unselectPiece();
+  }
+
   private setSelectedPiece(piece: Piece, x: number, y: number) : void {
+    console.log("setSelectedPiece");
+    this.selectedSquare = { x, y };
+    this.board.selectPiece(piece);
     this.availableMoves = piece.getMoves(this.board, x, y);
   }
 
   private unselectPiece(): void {
+    console.log("unselectPiece");
+    this.selectedSquare = null;
+    this.board.selectPiece(null);
     this.availableMoves = [];
   }
 }
