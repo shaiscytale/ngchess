@@ -12,13 +12,22 @@
   </form>
 </section>
 
-<section *ngIf="game?.isStarted()">
+<section class="game-header" *ngIf="game?.isStarted()">
   <h1>Partie en cours entre {{ game!.whitePlayerName }} et {{ game!.blackPlayerName }}</h1>
-  <h2>tour des {{ isWhiteTurn() ? 'blancs' : 'noirs' }}</h2>
 </section>
-<section>
+<section class="game-main" *ngIf="game?.isStarted()">
+  <section class="game-board">
+    <h2>tour des {{ isWhiteTurn() ? 'blancs' : 'noirs' }}</h2>
+    <chess-board
+      *ngIf="game?.isStarted()"
+      [board]="game?.board!"
+      (turnChanged)="handleTurnChanged($event)"></chess-board>
+  </section>
+
+  <section class="moves-history" >
+    <h3>Historique des coups</h3>
+    <ul>
+      <li *ngFor="let move of game!.moveHistory">{{ move.code }}</li>
+    </ul>
+  </section>
 </section>
-<chess-board
-  *ngIf="game?.isStarted()"
-  [board]="game?.board!"
-  (turnChanged)="handleTurnChanged($event)"></chess-board>
