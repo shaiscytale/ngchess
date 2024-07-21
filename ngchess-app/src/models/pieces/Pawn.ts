@@ -5,7 +5,7 @@ import { Move, Piece } from "./Piece";
 export class Pawn extends Piece {
 
   constructor(color: Color){
-    super("Pawn", "P", color);
+    super('Pawn', '&#9817', '&#9823', color);
   }
 
   override getMoves(board: Board): Move[] {

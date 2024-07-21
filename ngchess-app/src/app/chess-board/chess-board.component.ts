@@ -24,7 +24,7 @@ export class ChessBoardComponent implements OnInit {
     if(piece === null)
       return '';
 
-    return piece.code;
+    return piece.getSymbol();
   }
 
   getBackgroundColor(x: number, y: number): string {

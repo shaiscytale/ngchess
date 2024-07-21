@@ -27,13 +27,15 @@ export class Position {
 
 export abstract class Piece {
   name: string;
-  code: string;
+  whiteCode: string;
+  blackCode: string;
   color: Color;
   position: Position | undefined;
 
-  constructor(name: string, code: string, color: Color){
+  constructor(name: string, whiteCode: string, blackCode: string, color: Color){
     this.name = name;
-    this.code = code;
+    this.whiteCode = whiteCode;
+    this.blackCode = blackCode;
     this.color = color;
   }
 
@@ -41,7 +43,7 @@ export abstract class Piece {
   abstract move(x: number, y: number): void;
 
   getSymbol(): string {
-    return this.color === Color.white ? this.code.toUpperCase() : this.code.toLowerCase();
+    return this.color === Color.white ? this.whiteCode : this.blackCode;
   }
 
   place(position: Position){

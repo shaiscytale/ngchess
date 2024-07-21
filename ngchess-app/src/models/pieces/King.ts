@@ -5,7 +5,7 @@ import { Move, Piece } from "./Piece";
 export class King extends Piece {
 
   constructor(color: Color){
-    super("King", "K", color);
+    super('King', '&#9812', '&#9818', color);
   }
   override getMoves(board: Board): Move[] {
     throw new Error("Method not implemented.");

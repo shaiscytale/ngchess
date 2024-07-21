@@ -22,41 +22,41 @@ export class Board {
 
   private resetBoard() {
     // place pieces - white side
-    this.squares[0][0] = new Rook(Color.white);
-    this.squares[0][1] = new Knight(Color.white);
-    this.squares[0][2] = new Bishop(Color.white);
-    this.squares[0][3] = new Queen(Color.white);
-    this.squares[0][4] = new King(Color.white);
-    this.squares[0][5] = new Bishop(Color.white);
-    this.squares[0][6] = new Knight(Color.white);
-    this.squares[0][7] = new Rook(Color.white);
-    this.squares[1][0] = new Pawn(Color.white);
-    this.squares[1][1] = new Pawn(Color.white);
-    this.squares[1][2] = new Pawn(Color.white);
-    this.squares[1][3] = new Pawn(Color.white);
-    this.squares[1][4] = new Pawn(Color.white);
-    this.squares[1][5] = new Pawn(Color.white);
-    this.squares[1][6] = new Pawn(Color.white);
-    this.squares[1][7] = new Pawn(Color.white);
+    this.squares[0][0] = new Rook(Color.black);
+    this.squares[0][1] = new Knight(Color.black);
+    this.squares[0][2] = new Bishop(Color.black);
+    this.squares[0][3] = new Queen(Color.black);
+    this.squares[0][4] = new King(Color.black);
+    this.squares[0][5] = new Bishop(Color.black);
+    this.squares[0][6] = new Knight(Color.black);
+    this.squares[0][7] = new Rook(Color.black);
+    this.squares[1][0] = new Pawn(Color.black);
+    this.squares[1][1] = new Pawn(Color.black);
+    this.squares[1][2] = new Pawn(Color.black);
+    this.squares[1][3] = new Pawn(Color.black);
+    this.squares[1][4] = new Pawn(Color.black);
+    this.squares[1][5] = new Pawn(Color.black);
+    this.squares[1][6] = new Pawn(Color.black);
+    this.squares[1][7] = new Pawn(Color.black);
 
 
     // place pieces - black side
-    this.squares[7][0] = new Rook(Color.black);
-    this.squares[7][1] = new Knight(Color.black);
-    this.squares[7][2] = new Bishop(Color.black);
-    this.squares[7][3] = new Queen(Color.black);
-    this.squares[7][4] = new King(Color.black);
-    this.squares[7][5] = new Bishop(Color.black);
-    this.squares[7][6] = new Knight(Color.black);
-    this.squares[7][7] = new Rook(Color.black);
-    this.squares[6][0] = new Pawn(Color.black);
-    this.squares[6][1] = new Pawn(Color.black);
-    this.squares[6][2] = new Pawn(Color.black);
-    this.squares[6][3] = new Pawn(Color.black);
-    this.squares[6][4] = new Pawn(Color.black);
-    this.squares[6][5] = new Pawn(Color.black);
-    this.squares[6][6] = new Pawn(Color.black);
-    this.squares[6][7] = new Pawn(Color.black);
+    this.squares[7][0] = new Rook(Color.white);
+    this.squares[7][1] = new Knight(Color.white);
+    this.squares[7][2] = new Bishop(Color.white);
+    this.squares[7][3] = new Queen(Color.white);
+    this.squares[7][4] = new King(Color.white);
+    this.squares[7][5] = new Bishop(Color.white);
+    this.squares[7][6] = new Knight(Color.white);
+    this.squares[7][7] = new Rook(Color.white);
+    this.squares[6][0] = new Pawn(Color.white);
+    this.squares[6][1] = new Pawn(Color.white);
+    this.squares[6][2] = new Pawn(Color.white);
+    this.squares[6][3] = new Pawn(Color.white);
+    this.squares[6][4] = new Pawn(Color.white);
+    this.squares[6][5] = new Pawn(Color.white);
+    this.squares[6][6] = new Pawn(Color.white);
+    this.squares[6][7] = new Pawn(Color.white);
   }
 
   public makeMove(move: Move){
