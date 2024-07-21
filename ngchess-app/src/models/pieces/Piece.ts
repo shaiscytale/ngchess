@@ -2,16 +2,18 @@ import { Board } from "../board/board";
 import { Color } from "../enums/Color.enum";
 
 export class Move {
-  from: Position;
-  to: Position;
+  fromX: number;
+  fromY: number;
+  toX: number;
+  toY: number;
   code: string | undefined;
   points: number | undefined;
 
-  constructor(from: Position, to: Position, code?: string, points?: number){
-    this.from = from;
-    this.to = to;
-    this.code = code;
-    this.points = points;
+  constructor(fromX: number, fromY: number, toX: number, toY: number){
+    this.fromX = fromX;
+    this.fromY = fromY;
+    this.toX = toX;
+    this.toY = toY;
   }
 }
 
@@ -39,11 +41,15 @@ export abstract class Piece {
     this.color = color;
   }
 
-  abstract getMoves(board: Board): Move[];
+  abstract getMoves(board: Board, currentX: number, currentY: number): Move[];
   abstract move(x: number, y: number): void;
 
   getSymbol(): string {
     return this.color === Color.white ? this.whiteCode : this.blackCode;
+  }
+
+  public isWhite(): boolean {
+    return this.color === Color.white;
   }
 
   place(position: Position){

@@ -3,7 +3,8 @@
     <div *ngFor="let square of row; let x = index"
     [ngStyle]="{'width': '50px', 'height': '50px', 'background-color': getBackgroundColor(x, y)}"
     style="display: flex; justify-content: center; align-items: center;"
-    [innerHTML]="getSquareContent(x, y)">
+    [innerHTML]="getSquareContent(x, y)"
+    (click)="selectSquare(x, y)">
 
     </div>
   </div>

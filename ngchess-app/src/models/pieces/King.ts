@@ -7,7 +7,7 @@ export class King extends Piece {
   constructor(color: Color){
     super('King', '&#9812', '&#9818', color);
   }
-  override getMoves(board: Board): Move[] {
+  override getMoves(board: Board, currentX: number, currentY: number): Move[] {
     throw new Error("Method not implemented.");
   }
   override move(x: number, y: number): void {

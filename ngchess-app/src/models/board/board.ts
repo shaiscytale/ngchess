@@ -73,6 +73,18 @@ export class Board {
     piece.move(to.x, to.y);
   }
 
+  isEmpty(x: number, y: number): boolean {
+    return this.squares[x][y] === null;
+  }
+
+  isOpponentPiece(x: number, y: number, color: Color): boolean {
+    if(!this.isValidPosition(x, y))
+      return false;
+    const piece = this.squares[x][y];
+    console.log(x, y, this.squares);
+    return piece !== null && piece.color !== color;
+  }
+
   public getPiece(x: number, y: number) : Piece | null {
     return this.squares[x][y];
   }
