@@ -1,1 +1,24 @@
-<chess-board *ngIf="game?.isStarted()" [board]="game?.board!"></chess-board>
+<section *ngIf="!game?.isStarted()">
+  <form (submit)="startGame()">
+    <div>
+      <label for="whitePlayerName">Nom du joueur blanc :</label>
+      <input type="text" id="whitePlayerName" [(ngModel)]="whitePlayer" name="whitePlayer" required>
+    </div>
+    <div>
+      <label for="blackPlayerName">Nom du joueur noir :</label>
+      <input type="text" id="blackPlayerName" [(ngModel)]="blackPlayer" name="blackPlayer" required>
+    </div>
+    <button type="submit">Lancer la partie</button>
+  </form>
+</section>
+
+<section *ngIf="game?.isStarted()">
+  <h1>Partie en cours entre {{ game!.whitePlayerName }} et {{ game!.blackPlayerName }}</h1>
+  <h2>tour des {{ isWhiteTurn() ? 'blancs' : 'noirs' }}</h2>
+</section>
+<section>
+</section>
+<chess-board
+  *ngIf="game?.isStarted()"
+  [board]="game?.board!"
+  (turnChanged)="handleTurnChanged($event)"></chess-board>

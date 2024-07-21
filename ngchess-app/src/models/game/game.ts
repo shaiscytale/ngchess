@@ -1,4 +1,5 @@
 import { Board } from "../board/board";
+import { Color } from "../enums/Color.enum";
 import { Move } from "../pieces/Piece";
 
 export class Game {
@@ -6,6 +7,9 @@ export class Game {
   blackPlayerName: string;
 
   board: Board | null;
+
+  turn: Color = Color.white;
+
   moveHistory: Move[];
 
 
@@ -23,5 +27,9 @@ export class Game {
 
   public isStarted() : boolean {
     return this.board !== null;
+  }
+
+  public isWhiteTurn() : boolean {
+    return this.turn === Color.white;
   }
 }

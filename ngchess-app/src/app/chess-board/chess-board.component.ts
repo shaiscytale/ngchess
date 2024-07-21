@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Board } from '../../models/board/board';
 import { CommonModule } from '@angular/common';
 import { Color } from '../../models/enums/Color.enum';
@@ -13,6 +13,8 @@ import { Move, Piece } from '../../models/pieces/Piece';
 })
 export class ChessBoardComponent implements OnInit {
   @Input() board!: Board;
+
+  @Output() turnChanged = new EventEmitter<Color>();
 
   turn: Color = Color.white;
   selectedSquare: { x: number, y: number } | null = null;
@@ -83,8 +85,13 @@ export class ChessBoardComponent implements OnInit {
       return;
 
     this.board.movePiece(move);
-    this.turn = this.turn === Color.white ? Color.black : Color.white;
+    this.setNextPlayerTurn();
     this.unselectPiece();
+  }
+
+  private setNextPlayerTurn(): void {
+    this.turn = this.turn === Color.white ? Color.black : Color.white;
+    this.turnChanged.emit(this.turn);
   }
 
   private addMoveToHistory(move: Move): void {
