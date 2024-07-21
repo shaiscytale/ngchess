@@ -21,7 +21,8 @@
     <chess-board
       *ngIf="game?.isStarted()"
       [board]="game?.board!"
-      (turnChanged)="handleTurnChanged($event)"></chess-board>
+      (turnChanged)="handleTurnChanged($event)"
+      (moveDone)="handleMoveDone($event)"></chess-board>
   </section>
 
   <section class="moves-history" >

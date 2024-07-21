@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game/game';
 import { FormsModule } from '@angular/forms';
 import { Color } from '../../models/enums/Color.enum';
+import { Move } from '../../models/pieces/Piece';
 
 @Component({
   selector: 'game',
@@ -33,6 +34,11 @@ export class GameComponent {
   handleTurnChanged(newTurnColor: Color) {
     console.log("Turn changed to", newTurnColor);
     this.currentTurnColor = newTurnColor;
+  }
+
+  handleMoveDone(move: Move) {
+    console.log("Move done", move);
+    this.game?.moveHistory.push(move);
   }
 
   isWhiteTurn() {

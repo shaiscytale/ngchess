@@ -5,7 +5,7 @@ import { Move, Piece, Position } from "./Piece";
 export class Rook extends Piece {
 
   constructor(color: Color){
-    super('Rook', '	&#9814', '&#9820', color);
+    super('Rook', 'R', '	&#9814', '&#9820', color);
   }
 
   override getMoves(board: Board, currentX: number, currentY: number): Move[] {
@@ -32,13 +32,13 @@ export class Rook extends Piece {
         if (pieceAtPosition) {
           if (pieceAtPosition.color !== this.color) {
             possibleMoves.push(
-              new Move(currentX, currentY, x, y));
+              new Move(currentX, currentY, x, y, this.color, this));
           }
           break; // stop searching for moves : piece blocked by friendly piece
         }
         else {
           possibleMoves.push(
-            new Move(currentX, currentY, x, y));
+            new Move(currentX, currentY, x, y, this.color, this));
         }
       }
     });

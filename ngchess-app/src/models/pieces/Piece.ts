@@ -6,14 +6,37 @@ export class Move {
   fromY: number;
   toX: number;
   toY: number;
+  color: Color;
+  piece: Piece;
   code: string | undefined;
   points: number | undefined;
 
-  constructor(fromX: number, fromY: number, toX: number, toY: number){
+  constructor(fromX: number, fromY: number, toX: number, toY: number, color: Color, piece: Piece){
     this.fromX = fromX;
     this.fromY = fromY;
     this.toX = toX;
     this.toY = toY;
+    this.color = color;
+    this.piece = piece;
+    this.generateCode();
+  }
+
+  private generateCode(): void {
+    this.code = `${this.piece.shortCode}${this.getAlgebraicY(this.fromY)}${this.getAlgebraicX(this.fromX)}-${this.getAlgebraicY(this.toY)}${this.getAlgebraicX(this.toX)}`;
+  }
+
+  private getAlgebraicX(x: number): string {
+    const xCodes = ['8', '7', '6', '5', '4', '3', '2', '1'];
+    let alCode = xCodes[x];
+    console.log("getAlgebraicX", x, "=>", alCode);
+    return alCode;
+  }
+
+  private getAlgebraicY(y: number): string {
+    const yCodes = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+    let alCode = yCodes[y];
+    console.log("getAlgebraicX", y, "=>", alCode);
+    return alCode;
   }
 }
 
@@ -29,13 +52,15 @@ export class Position {
 
 export abstract class Piece {
   name: string;
+  shortCode: string;
   whiteCode: string;
   blackCode: string;
   color: Color;
   position: Position | undefined;
 
-  constructor(name: string, whiteCode: string, blackCode: string, color: Color){
+  constructor(name: string, shortCode: string, whiteCode: string, blackCode: string, color: Color){
     this.name = name;
+    this.shortCode = color === Color.white ? shortCode.toUpperCase() : shortCode.toLowerCase();
     this.whiteCode = whiteCode;
     this.blackCode = blackCode;
     this.color = color;

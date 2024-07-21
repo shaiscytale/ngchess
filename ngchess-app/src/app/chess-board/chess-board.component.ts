@@ -15,12 +15,11 @@ export class ChessBoardComponent implements OnInit {
   @Input() board!: Board;
 
   @Output() turnChanged = new EventEmitter<Color>();
+  @Output() moveDone = new EventEmitter<Move>();
 
   turn: Color = Color.white;
   selectedSquare: { x: number, y: number } | null = null;
   availableMoves: Move[] = [];
-
-  moveHistory: Move[] = [];
 
   constructor() { }
 
@@ -85,6 +84,7 @@ export class ChessBoardComponent implements OnInit {
       return;
 
     this.board.movePiece(move);
+    this.moveDone.emit(move);
     this.setNextPlayerTurn();
     this.unselectPiece();
   }
@@ -92,10 +92,6 @@ export class ChessBoardComponent implements OnInit {
   private setNextPlayerTurn(): void {
     this.turn = this.turn === Color.white ? Color.black : Color.white;
     this.turnChanged.emit(this.turn);
-  }
-
-  private addMoveToHistory(move: Move): void {
-    this.moveHistory.push(move);
   }
 
   private setSelectedPiece(piece: Piece, x: number, y: number) : void {
