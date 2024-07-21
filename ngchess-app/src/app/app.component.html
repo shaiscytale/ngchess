@@ -1,2 +1,3 @@
-<button *ngIf="!board" (click)="createNewGame()">Lancer une nouvelle partie</button>
-<chess-board *ngIf="board" [board]="board!"></chess-board>
+<button *ngIf="!gameStarted" (click)="createNewGame()">Lancer une nouvelle partie</button>
+
+<game *ngIf="gameStarted"></game>

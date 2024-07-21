@@ -18,6 +18,8 @@ export class ChessBoardComponent implements OnInit {
   selectedSquare: { x: number, y: number } | null = null;
   availableMoves: Move[] = [];
 
+  moveHistory: Move[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -83,6 +85,10 @@ export class ChessBoardComponent implements OnInit {
     this.board.movePiece(move);
     this.turn = this.turn === Color.white ? Color.black : Color.white;
     this.unselectPiece();
+  }
+
+  private addMoveToHistory(move: Move): void {
+    this.moveHistory.push(move);
   }
 
   private setSelectedPiece(piece: Piece, x: number, y: number) : void {
