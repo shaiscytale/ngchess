@@ -11,10 +11,10 @@ export class Rook extends Piece {
   override getMoves(board: Board, currentX: number, currentY: number): Move[] {
     let possibleMoves: Move[] = [];
     const directions = [
-      { dx: 1, dy: 0 }, // right
-      { dx: -1, dy: 0 }, // left
-      { dx: 0, dy: 1 }, // bot
-      { dx: 0, dy: -1 } // top
+      { dx: 1, dy: 0 }, 
+      { dx: -1, dy: 0 }, 
+      { dx: 0, dy: 1 }, 
+      { dx: 0, dy: -1 } 
     ];
 
     directions.forEach(({ dx, dy }) => {

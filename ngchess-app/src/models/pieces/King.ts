@@ -24,7 +24,6 @@ export class King extends Piece {
       { dx: top, dy: left },
     ];
 
-    // ne garder que les moves (piece friendly)
     directions.forEach(({ dx, dy }) => {
       if(board.isValidPosition(dx, dy) && 
           this.isValidKingMove(dx, dy, this.color) && 
@@ -34,7 +33,7 @@ export class King extends Piece {
           let move = new Move(currentX, currentY, dx, dy, this.color, this);
           possibleMoves.push(move);
       }
-    });
+    }); 
 
     return possibleMoves;
   }
