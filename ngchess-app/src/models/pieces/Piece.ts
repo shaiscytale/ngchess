@@ -28,14 +28,12 @@ export class Move {
   private getAlgebraicX(x: number): string {
     const xCodes = ['8', '7', '6', '5', '4', '3', '2', '1'];
     let alCode = xCodes[x];
-    console.log("getAlgebraicX", x, "=>", alCode);
     return alCode;
   }
 
   private getAlgebraicY(y: number): string {
     const yCodes = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
     let alCode = yCodes[y];
-    console.log("getAlgebraicX", y, "=>", alCode);
     return alCode;
   }
 }

@@ -77,8 +77,10 @@ export class Board {
   }
 
   isOpponentPiece(x: number, y: number, color: Color): boolean {
-    if(!this.isValidPosition(x, y))
+    if(!this.isValidPosition(x, y)){
+      console.log("isOpponentPiece invalid position", x, y);
       return false;
+    }
     const piece = this.squares[x][y];
     console.log(x, y, this.squares);
     return piece !== null && piece.color !== color;

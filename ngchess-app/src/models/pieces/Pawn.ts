@@ -30,13 +30,16 @@ export class Pawn extends Piece {
     }
 
     // capture move : diag
-    [-1, 1].forEach((dx) => {
-      if (board.isOpponentPiece(currentX + dx, currentY + direction, this.color)) {
-        let diagMove = new Move(currentX, currentY, currentX + dx, currentY + direction, this.color, this);
+    [-1, 1].forEach((dy) => {
+      console.log("capture move check : currentX + dx, currentY + direction", currentX, dy, currentY, direction, this.color);
+      if (board.isOpponentPiece(currentX + direction, currentY + dy, this.color)) {
+        let diagMove = new Move(currentX, currentY, currentX + direction, currentY + dy, this.color, this);
         console.log("capture move : diag", diagMove);
         moves.push(diagMove);
       }
     });
+
+    // TODO: implement "prise en passant"
 
     return moves;
   }
