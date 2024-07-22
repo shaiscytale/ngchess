@@ -8,38 +8,38 @@ export class King extends Piece {
     super('King', 'K', '&#9812', '&#9818', color);
   }
   override getMoves(board: Board, currentX: number, currentY: number): Move[] {
-    const result: Move[] = [];
-    const moves: Move[] = [];
+    let possibleMoves: Move[] = [];
     const top =  currentX - 1;
     const bot = currentX + 1;
     const left =  currentY - 1;
     const right = currentY + 1;
-
-    // simple all direction moves
-    moves.push(new Move(currentX, currentY, top, currentY, this.color, this));
-    moves.push(new Move(currentX, currentY, top, right, this.color, this));
-    moves.push(new Move(currentX, currentY, currentX, right, this.color, this));
-    moves.push(new Move(currentX, currentY, bot, right, this.color, this));
-    moves.push(new Move(currentX, currentY, bot, currentY, this.color, this));
-    moves.push(new Move(currentX, currentY, bot, left, this.color, this));
-    moves.push(new Move(currentX, currentY, currentX, left, this.color, this));
-    moves.push(new Move(currentX, currentY, top, left, this.color, this));
+    const directions = [
+      { dx: top, dy: currentY },
+      { dx: top, dy: right },
+      { dx: currentX, dy: right },
+      { dx: bot, dy: right },
+      { dx: bot, dy: currentY },
+      { dx: bot, dy: left },
+      { dx: currentX, dy: left },
+      { dx: top, dy: left },
+    ];
 
     // ne garder que les moves (piece friendly)
-    moves.forEach((move) => {
-      if(board.isValidPosition(move.toX, move.toY) && 
-          this.isValidKingMove(move) && 
-          (board.isEmpty(move.toX, move.toY) || 
-          board.isOpponentPiece(move.toX, move.toY, move.color)
+    directions.forEach(({ dx, dy }) => {
+      if(board.isValidPosition(dx, dy) && 
+          this.isValidKingMove(dx, dy, this.color) && 
+          (board.isEmpty(dx, dy) || 
+          board.isOpponentPiece(dx, dy, this.color)
         )){
-        result.push(move);
+          let move = new Move(currentX, currentY, dx, dy, this.color, this);
+          possibleMoves.push(move);
       }
     });
 
-    return result;
+    return possibleMoves;
   }
   
-  private isValidKingMove(move: Move): boolean {
+  private isValidKingMove(x: number, y: number, color: Color): boolean {
     // TODO : virer les moves qui mettent en echec
     return true;
   }
