@@ -108,4 +108,15 @@ export class Board {
       console.log(row);
     }
   }
+
+  
+  public isPieceAt(x: number, y: number, type: string, otherColor: Color): boolean {
+    let piece = this.getPiece(x, y);
+
+    if(piece === null || typeof(piece) !== type || piece.color !== otherColor) {
+      return false;
+    }
+
+    return true;
+  }
 }

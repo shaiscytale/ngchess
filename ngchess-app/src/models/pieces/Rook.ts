@@ -28,9 +28,9 @@ export class Rook extends Piece {
         if (!board.isValidPosition(x, y))
           break;
 
-        const pieceAtPosition = board.getPiece(x, y);
-        if (pieceAtPosition) {
-          if (pieceAtPosition.color !== this.color) {
+        const targetPiece = board.getPiece(x, y);
+        if (targetPiece) {
+          if (targetPiece.color !== this.color) {
             possibleMoves.push(
               new Move(currentX, currentY, x, y, this.color, this));
           }
