@@ -6,21 +6,22 @@ import { Pawn } from "../pieces/Pawn";
 import { Move, Piece, Position } from "../pieces/Piece";
 import { Queen } from "../pieces/Queen";
 import { Rook } from "../pieces/Rook";
+import { BaseBoard } from "./baseBoard";
+
 
 
 export class Board {
-  private squares: (King | Queen | Rook | Bishop | Knight | Pawn | null)[][];
+  private squares: (King | Queen | Rook | Bishop | Knight | Pawn | null)[][] = [];
   private selectedPiece: Piece | null = null;
 
 
+  // ---- old algorithm with 2D array ----
   constructor() {
     this.squares = Array(8).fill(null).map(() => Array(8).fill(null));
     this.resetBoard();
+
   }
 
-  public getSquares() {
-    return this.squares;
-  }
 
   private resetBoard() {
     // place pieces - white side
@@ -59,6 +60,11 @@ export class Board {
     this.squares[6][5] = new Pawn(Color.white);
     this.squares[6][6] = new Pawn(Color.white);
     this.squares[6][7] = new Pawn(Color.white);
+  }
+  
+
+  public getSquares() {
+    return this.squares;
   }
 
   public movePiece(move: Move) : void {

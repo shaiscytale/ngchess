@@ -1,6 +1,28 @@
 import { Board } from "../board/board";
 import { Color } from "../enums/Color.enum";
 
+export class HyattMove {
+  from: number;
+  to: number;
+  color: Color;
+  piece: Piece;
+  code: string | undefined;
+  points: number | undefined;
+
+  constructor(from: number, to: number, color: Color, piece: Piece){
+    this.from = from;
+    this.to = to;
+    this.color = color;
+    this.piece = piece;
+
+    this.generateCode();
+  }
+
+  private generateCode(): void {
+    this.code = "";
+  }
+}
+
 export class Move {
   fromX: number;
   fromY: number;
@@ -65,6 +87,7 @@ export abstract class Piece {
   }
 
   abstract getMoves(board: Board, currentX: number, currentY: number): Move[];
+  abstract getMoves(board: Board, currentSquare: number): HyattMove[];
   abstract move(x: number, y: number): void;
 
   getSymbol(): string {

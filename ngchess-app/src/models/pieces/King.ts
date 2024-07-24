@@ -47,55 +47,55 @@ export class King extends Piece {
   
   private isValidKingMove(board: Board, x: number, y: number, color: Color): boolean {
     // TODO : still to slow, too much operations
-    
-    const otherColor = color === Color.white ? Color.black : Color.white;
-
-
-    // pawn's moves
-    const pawnDirections = color === Color.white ? [[-1, -1], [-1, 1]] : [[1, -1], [1, 1]];
-    for (const [dx, dy] of pawnDirections) {
-      if (board.isPieceAt(x + dx, y + dy, typeof(Pawn), otherColor)) {
-        return false;
-      }
-    }
-
-    // knights dangerous moves
-    const knightMoves = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]];
-    for (const [dx, dy] of knightMoves) {
-      if (board.isPieceAt(x + dx, y + dy, typeof(Knight), otherColor)) {
-        return false;
-      }
-    }
-
-    // rook bishop & queen possible moves
-    const directions = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [-1, 1], [1, -1], [1, 1]];
-    for (const [dx, dy] of directions) {
-      let i = x + dx, j = y + dy;
-      while (board.isValidPosition(i, j)) {
-        if (!board.isEmpty(i, j)) {
-          const piece = board.getPiece(i, j);
-          if (piece && piece.color !== color && (typeof(piece) === typeof(Rook) && Math.abs(dx) + Math.abs(dy) === 1 || 
-          typeof(piece) === typeof(Bishop)  && dx !== 0 && dy !== 0 || 
-          typeof(piece) === typeof(Queen) )) {
-            return false;
-          }
-          break;
-        }
-        i += dx;
-        j += dy;
-      }
-    }
-
-    // other king's moves
-    const kingMoves = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
-    for (const [dx, dy] of kingMoves) {
-      if (board.isPieceAt(x + dx, y + dy, typeof(King), otherColor)) {
-        return false;
-      }
-    }
-
-    // no check, so return true
     return true;
+    // const otherColor = color === Color.white ? Color.black : Color.white;
+
+
+    // // pawn's moves
+    // const pawnDirections = color === Color.white ? [[-1, -1], [-1, 1]] : [[1, -1], [1, 1]];
+    // for (const [dx, dy] of pawnDirections) {
+    //   if (board.isPieceAt(x + dx, y + dy, typeof(Pawn), otherColor)) {
+    //     return false;
+    //   }
+    // }
+
+    // // knights dangerous moves
+    // const knightMoves = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]];
+    // for (const [dx, dy] of knightMoves) {
+    //   if (board.isPieceAt(x + dx, y + dy, typeof(Knight), otherColor)) {
+    //     return false;
+    //   }
+    // }
+
+    // // rook bishop & queen possible moves
+    // const directions = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, -1], [-1, 1], [1, -1], [1, 1]];
+    // for (const [dx, dy] of directions) {
+    //   let i = x + dx, j = y + dy;
+    //   while (board.isValidPosition(i, j)) {
+    //     if (!board.isEmpty(i, j)) {
+    //       const piece = board.getPiece(i, j);
+    //       if (piece && piece.color !== color && (typeof(piece) === typeof(Rook) && Math.abs(dx) + Math.abs(dy) === 1 || 
+    //       typeof(piece) === typeof(Bishop)  && dx !== 0 && dy !== 0 || 
+    //       typeof(piece) === typeof(Queen) )) {
+    //         return false;
+    //       }
+    //       break;
+    //     }
+    //     i += dx;
+    //     j += dy;
+    //   }
+    // }
+
+    // // other king's moves
+    // const kingMoves = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+    // for (const [dx, dy] of kingMoves) {
+    //   if (board.isPieceAt(x + dx, y + dy, typeof(King), otherColor)) {
+    //     return false;
+    //   }
+    // }
+
+    // // no check, so return true
+    // return true;
     
     // TODO : optimize this
     // for (let i = 0; i < 8; i++) {
