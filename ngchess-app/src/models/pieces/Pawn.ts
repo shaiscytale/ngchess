@@ -1,8 +1,32 @@
 import { Board } from "../board/board";
+import { HyattBoard } from "../board/hyattBoard";
 import { Color } from "../enums/Color.enum";
-import { Move, Piece } from "./Piece";
+import { HyattMove, Move, Piece } from "./Piece";
 
 export class Pawn extends Piece {
+  override getHyattDirections(square: number): number[] {
+    if(this.color === Color.white) {
+      if(square < 16)
+        return [10, 20];
+      else
+        return [10];
+    } else {
+      if(square >= 48)
+        return [-10, -20];
+      else
+        return [-10];
+    }
+  }
+
+  public getHyattCaptureDirections(): number[] {
+    if(this.color === Color.white)
+      return [9, 11];
+    else
+      return [-9, -11];
+  }
+  // override getHyattMoves(board: HyattBoard, currentSquare: number): HyattMove[] {
+  //   throw new Error("Method not implemented.");
+  // }
 
   constructor(color: Color){
     super('Pawn', 'P', '&#9817', '&#9823', color);
@@ -42,9 +66,5 @@ export class Pawn extends Piece {
     // TODO: implement "prise en passant"
 
     return moves;
-  }
-
-  override move(x: number, y: number): void {
-    throw new Error("Method not implemented.");
   }
 }

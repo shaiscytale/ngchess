@@ -1,0 +1,14 @@
+.board {
+  width: 400px;
+  height: 400px;
+}
+
+.black-board{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.white-board {
+  display: flex;
+  flex-wrap: wrap-reverse;
+}

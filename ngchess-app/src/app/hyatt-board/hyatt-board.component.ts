@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { Color } from '../../models/enums/Color.enum';
 import { HyattMove, Move, Piece } from '../../models/pieces/Piece';
 import { HyattBoard } from '../../models/board/hyattBoard';
+import { King } from '../../models/pieces/King';
 
 @Component({
-  selector: 'app-hyatt-board',
+  selector: 'hyatt-board',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './hyatt-board.component.html',
@@ -14,11 +15,17 @@ import { HyattBoard } from '../../models/board/hyattBoard';
 })
 export class HyattBoardComponent implements OnInit {
   board: HyattBoard;
-
+  playerSide: Color = Color.white;
   turn: Color = Color.white;
   selectedSquare: number | null = null;
   availableMoves: HyattMove[] = [];
+  currentThreats: number[] = [];
+  isCheck: boolean = false;
 
+  @Output() turnChanged = new EventEmitter<Color>();
+  @Output() moveDone = new EventEmitter<HyattMove>();
+
+  isWhitePlayer: boolean = true;
 
   constructor() {
     this.board = new HyattBoard();
@@ -27,7 +34,7 @@ export class HyattBoardComponent implements OnInit {
   ngOnInit(): void {
       this.board.reset();
   }
-  
+
   getSquareContent(square: number) : string {
     const piece = this.board.getPiece(square);
 
@@ -37,15 +44,22 @@ export class HyattBoardComponent implements OnInit {
     return piece.getSymbol();
   }
 
-  
+
   getBackgroundColor(square: number): string {
     if(this.isSquareAvailableMove(square)){
+      let move = this.availableMoves.find(move => move.to === square);
+      if(move?.piece instanceof King
+        && this.currentThreats.some(threat => threat === square)) {
+        return '#fc0f03';
+      }
       return '#37d0de';
-    } else if (this.selectedSquare 
+    } else if (this.selectedSquare
       && this.selectedSquare === square) {
       return '#38f269';
     }
-    return square % 2 === 0 ? '#f2ecdc' : '#99895d';
+    const row = Math.floor(square / 8);
+    const col = square % 8;
+    return (row + col) % 2 === 0 ? '#f2ecdc' : '#99895d';
   }
 
   isSquareAvailableMove(square: number) : boolean {
@@ -53,6 +67,7 @@ export class HyattBoardComponent implements OnInit {
   }
 
   handleSquareClick(square: number) : void {
+    console.log("handleSquareClick", square);
     if(this.isSquareAvailableMove(square)) {
       this.movePiece(square);
     } else {
@@ -82,14 +97,47 @@ export class HyattBoardComponent implements OnInit {
     console.log("setSelectedPiece");
     this.selectedSquare = square;
     this.board.selectPiece(piece);
-    this.availableMoves = piece.getMoves(this.board, square);
+    this.availableMoves = this.board.getPieceMoves(piece, square);//piece.getHyattMoves(this.board, square);
   }
 
   unselectPiece(): void {
     this.selectedSquare = null;
+    this.availableMoves = [];
   }
 
   movePiece(square: number): void {
     console.log("movePiece", square);
+
+    if(this.selectedSquare === null || this.availableMoves.length === 0)
+      return;
+
+    const move = this.availableMoves.find(move => move.to === square);
+    if(move === undefined)
+      return;
+
+    this.board.movePiece(move);
+    this.moveDone.emit(move);
+    this.updateThreats();
+    this.setNextPlayerTurn();
+    this.unselectPiece();
+  }
+
+  private updateThreats(): void {
+    this.currentThreats = this.board.processThreats(this.turn);
+    // check : if king is in threat
+    this.isCheck = this.currentThreats.some(threat => {
+      const piece = this.board.getPiece(threat);
+      if(piece instanceof King && piece.color !== this.turn) {
+        console.log("check !");
+        return true;
+      } else {
+        return false;
+      }
+    })
+  }
+
+  private setNextPlayerTurn(): void {
+    this.turn = this.turn === Color.white ? Color.black : Color.white;
+    this.turnChanged.emit(this.turn);
   }
 }

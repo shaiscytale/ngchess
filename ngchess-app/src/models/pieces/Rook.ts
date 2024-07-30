@@ -1,20 +1,28 @@
 import { Board } from "../board/board";
+import { HyattBoard } from "../board/hyattBoard";
 import { Color } from "../enums/Color.enum";
-import { Move, Piece, Position } from "./Piece";
+import { HyattMove, Move, Piece, Position } from "./Piece";
 
 export class Rook extends Piece {
 
-  constructor(color: Color){
+  override getHyattDirections(square: number): number[] {
+    return [1, 10, -1, -10];
+  }
+  // override getHyattMoves(board: HyattBoard, currentSquare: number): HyattMove[] {
+  //   throw new Error("Method not implemented.");
+  // }
+
+  constructor(color: Color) {
     super('Rook', 'R', '	&#9814', '&#9820', color);
   }
 
   override getMoves(board: Board, currentX: number, currentY: number): Move[] {
     let possibleMoves: Move[] = [];
     const directions = [
-      { dx: 1, dy: 0 }, 
-      { dx: -1, dy: 0 }, 
-      { dx: 0, dy: 1 }, 
-      { dx: 0, dy: -1 } 
+      { dx: 1, dy: 0 },
+      { dx: -1, dy: 0 },
+      { dx: 0, dy: 1 },
+      { dx: 0, dy: -1 }
     ];
 
     directions.forEach(({ dx, dy }) => {
@@ -46,7 +54,4 @@ export class Rook extends Piece {
     return possibleMoves;
   }
 
-  override move(x: number, y: number): void {
-    throw new Error("Method not implemented.");
-  }
 }

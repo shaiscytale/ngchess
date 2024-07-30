@@ -1,6 +1,6 @@
 import { Board } from "../board/board";
 import { Color } from "../enums/Color.enum";
-import { Move } from "../pieces/Piece";
+import { HyattMove, Move } from "../pieces/Piece";
 
 export class Game {
   whitePlayerName: string;
@@ -11,6 +11,7 @@ export class Game {
   turn: Color = Color.white;
 
   moveHistory: Move[];
+  hyattMoveHistory: HyattMove[];
 
 
 
@@ -18,6 +19,7 @@ export class Game {
     this.whitePlayerName = whitePlayerName;
     this.blackPlayerName = blackPlayerName;
     this.moveHistory = [];
+    this.hyattMoveHistory = [];
     this.board = null;
   }
 

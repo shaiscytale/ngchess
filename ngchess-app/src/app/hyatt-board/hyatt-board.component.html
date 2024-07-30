@@ -1,12 +1,12 @@
-<div style="display: flex; flex-wrap: wrap; width: 400px; height: 400px;">
+<div [ngClass]="this.isWhitePlayer ? 'board white-board' : 'board black-board'">
     <div *ngFor="let square of board.getBoardPieces(); let index = index"
       [ngStyle]="{
         'width': '50px',
         'height': '50px',
-        'background-color': getBackgroundColor(index % 8, Math.floor(index / 8))
+        'background-color': getBackgroundColor(index)
       }"
       style="display: flex; justify-content: center; align-items: center; font-weight: 400;"
       [innerHTML]="getSquareContent(index)"
-      (click)="handleSquareClick(index % 8, Math.floor(index / 8))">
+      (click)="handleSquareClick(index)">
     </div>
   </div>

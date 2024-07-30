@@ -18,11 +18,15 @@
 <section class="game-main" *ngIf="game?.isStarted()">
   <section class="game-board">
     <h2>tour des {{ isWhiteTurn() ? 'blancs' : 'noirs' }}</h2>
-    <chess-board
+    <!-- <chess-board
       *ngIf="game?.isStarted()"
       [board]="game?.board!"
       (turnChanged)="handleTurnChanged($event)"
-      (moveDone)="handleMoveDone($event)"></chess-board>
+      (moveDone)="handleMoveDone($event)"></chess-board> -->
+    <hyatt-board
+      *ngIf="game?.isStarted()"
+      (turnChanged)="handleTurnChanged($event)"
+      (moveDone)="handleHyattMoveDone($event)"></hyatt-board>
   </section>
 
   <section class="moves-history" >

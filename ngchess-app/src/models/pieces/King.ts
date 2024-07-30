@@ -1,13 +1,20 @@
 import { Board } from "../board/board";
+import { HyattBoard } from "../board/hyattBoard";
 import { Color } from "../enums/Color.enum";
 import { Bishop } from "./Bishop";
 import { Knight } from "./Knight";
 import { Pawn } from "./Pawn";
-import { Move, Piece } from "./Piece";
+import { HyattMove, Move, Piece } from "./Piece";
 import { Queen } from "./Queen";
 import { Rook } from "./Rook";
 
 export class King extends Piece {
+  override getHyattDirections(square: number): number[] {
+    return [-11, -10, -9, -1, 1, 9, 10, 11];
+  }
+  // override getHyattMoves(board: HyattBoard, currentSquare: number): HyattMove[] {
+  //   throw new Error("Method not implemented.");
+  // }
 
   constructor(color: Color){
     super('King', 'K', '&#9812', '&#9818', color);
@@ -30,8 +37,8 @@ export class King extends Piece {
     ];
 
     directions.forEach(({ dx, dy }) => {
-      if(board.isValidPosition(dx, dy) && 
-          (board.isEmpty(dx, dy) || 
+      if(board.isValidPosition(dx, dy) &&
+          (board.isEmpty(dx, dy) ||
           board.isOpponentPiece(dx, dy, this.color)
         )){
           let isValidMove = this.isValidKingMove(board, dx, dy, this.color);
@@ -40,11 +47,11 @@ export class King extends Piece {
             possibleMoves.push(move);
           }
       }
-    }); 
+    });
 
     return possibleMoves;
   }
-  
+
   private isValidKingMove(board: Board, x: number, y: number, color: Color): boolean {
     // TODO : still to slow, too much operations
     return true;
@@ -74,8 +81,8 @@ export class King extends Piece {
     //   while (board.isValidPosition(i, j)) {
     //     if (!board.isEmpty(i, j)) {
     //       const piece = board.getPiece(i, j);
-    //       if (piece && piece.color !== color && (typeof(piece) === typeof(Rook) && Math.abs(dx) + Math.abs(dy) === 1 || 
-    //       typeof(piece) === typeof(Bishop)  && dx !== 0 && dy !== 0 || 
+    //       if (piece && piece.color !== color && (typeof(piece) === typeof(Rook) && Math.abs(dx) + Math.abs(dy) === 1 ||
+    //       typeof(piece) === typeof(Bishop)  && dx !== 0 && dy !== 0 ||
     //       typeof(piece) === typeof(Queen) )) {
     //         return false;
     //       }
@@ -96,7 +103,7 @@ export class King extends Piece {
 
     // // no check, so return true
     // return true;
-    
+
     // TODO : optimize this
     // for (let i = 0; i < 8; i++) {
     //   for (let j = 0; j < 8; j++) {
@@ -105,16 +112,12 @@ export class King extends Piece {
     //       const moves = piece.getMoves(board, i, j);
     //       for (const move of moves) {
     //         if (move.toX === x && move.toY === y) {
-    //           return true; 
+    //           return true;
     //         }
     //       }
     //     }
     //   }
     // }
     // return false;
-  }
-
-  override move(x: number, y: number): void {
-    throw new Error("Method not implemented.");
   }
 }

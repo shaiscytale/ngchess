@@ -1,4 +1,5 @@
 import { Board } from "../board/board";
+import { HyattBoard } from "../board/hyattBoard";
 import { Color } from "../enums/Color.enum";
 
 export class HyattMove {
@@ -19,7 +20,10 @@ export class HyattMove {
   }
 
   private generateCode(): void {
-    this.code = "";
+    let fromCode = "";
+    let toCode = "";
+    let pieceCode = "";
+    this.code = `${pieceCode}${fromCode}${toCode}`;
   }
 }
 
@@ -87,8 +91,8 @@ export abstract class Piece {
   }
 
   abstract getMoves(board: Board, currentX: number, currentY: number): Move[];
-  abstract getMoves(board: Board, currentSquare: number): HyattMove[];
-  abstract move(x: number, y: number): void;
+  // abstract getHyattMoves(board: HyattBoard, currentSquare: number): HyattMove[];
+  abstract getHyattDirections(square: number) : number[];
 
   getSymbol(): string {
     return this.color === Color.white ? this.whiteCode : this.blackCode;

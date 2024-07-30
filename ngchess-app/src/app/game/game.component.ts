@@ -4,12 +4,13 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../models/game/game';
 import { FormsModule } from '@angular/forms';
 import { Color } from '../../models/enums/Color.enum';
-import { Move } from '../../models/pieces/Piece';
+import { HyattMove, Move } from '../../models/pieces/Piece';
+import { HyattBoardComponent } from "../hyatt-board/hyatt-board.component";
 
 @Component({
   selector: 'game',
   standalone: true,
-  imports: [CommonModule, ChessBoardComponent, FormsModule],
+  imports: [CommonModule, ChessBoardComponent, FormsModule, HyattBoardComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -39,6 +40,10 @@ export class GameComponent {
   handleMoveDone(move: Move) {
     console.log("Move done", move);
     this.game?.moveHistory.push(move);
+  }
+  handleHyattMoveDone(move: HyattMove) {
+    console.log("Move done", move);
+    this.game?.hyattMoveHistory.push(move);
   }
 
   isWhiteTurn() {
