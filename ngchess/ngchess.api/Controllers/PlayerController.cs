@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ngchess.contracts.Players;
 using ngchess.contracts.Players.Commands;
 using ngchess.contracts.Players.Queries;
-using ngchess.domain;
 
 namespace ngchess.api.Controllers;
 
@@ -15,7 +15,7 @@ public class PlayerController : BaseController
     }
 
     [HttpPost]
-    public async Task Post([FromBody] SavePlayerCommand command)
+    public async Task Post([FromBody] RegisterPlayerCommand command)
     {
         await Mediator.Send(command);
     }

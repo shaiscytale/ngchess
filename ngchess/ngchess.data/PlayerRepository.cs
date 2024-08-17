@@ -18,8 +18,21 @@ public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
         var update = Builders<Player>.Update
             .Set(c => c.Firstname, item.Firstname)
             .Set(c => c.Lastname, item.Lastname)
-            .Set(c => c.Pseudo, item.Pseudo)
+            .Set(c => c.Email, item.Email)
             .Set(c => c.Rating, item.Rating);
+        var result = await Collection.UpdateOneAsync(filter, update);
+
+        return result.ModifiedCount == 1;
+    }
+
+    public async Task<bool> UpdateCredentials(string id, string pseudo, string password, string email)
+    {
+        var filter = Builders<Player>.Filter.Eq("_id", id);
+
+        var update = Builders<Player>.Update
+            .Set(c => c.Pseudo, pseudo)
+            .Set(c => c.Email, email)
+            .Set(c => c.Password, password);
         var result = await Collection.UpdateOneAsync(filter, update);
 
         return result.ModifiedCount == 1;

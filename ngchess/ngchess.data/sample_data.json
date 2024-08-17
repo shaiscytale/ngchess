@@ -4,6 +4,8 @@
     "Firstname": "John",
     "Lastname": "Doe",
     "Pseudo": "UnknownGuy",
+    "Password": "Passw0rd!",
+    "Email": "john.doe@ngchess.com",
     "Rating": 1000
   },
   {
@@ -11,6 +13,8 @@
     "Firstname": "Jane",
     "Lastname": "Doe",
     "Pseudo": "UnknownGirl",
+    "Password": "Passw0rd!",
+    "Email": "jane.doe@ngchess.com",
     "Rating": 1200
   }
 ]
