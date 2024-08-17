@@ -27,7 +27,7 @@ public class GameHistoryController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<GameHistory> Get(Guid id)
+    public async Task<GameHistory> Get(string id)
     {
         return await Mediator.Send(new GetGameHistoryQuery(id));
     }

@@ -27,7 +27,7 @@ public class PlayerController : BaseController
     }
 
     [HttpGet("{id}")]
-    public async Task<Player> Get(Guid id)
+    public async Task<Player> Get(string id)
     {
         return await Mediator.Send(new GetPlayerQuery(id));
     }
