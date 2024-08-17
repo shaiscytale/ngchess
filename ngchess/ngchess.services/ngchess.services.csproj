@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ngchess.data\ngchess.data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Players\CommandHandlers\" />
+  </ItemGroup>
+
 </Project>

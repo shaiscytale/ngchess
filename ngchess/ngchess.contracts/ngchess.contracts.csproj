@@ -15,4 +15,8 @@
     <ProjectReference Include="..\ngchess.enumerations\ngchess.enumerations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Players\Commands\" />
+  </ItemGroup>
+
 </Project>

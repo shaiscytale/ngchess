@@ -36,7 +36,6 @@ public class Player : IEntity
         string password,
         string email)
     {
-        Id = ObjectId.GenerateNewId().ToString();
         Firstname = firstname;
         Lastname = lastname;
         Pseudo = pseudo;

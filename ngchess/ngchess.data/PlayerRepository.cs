@@ -25,6 +25,14 @@ public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
         return result.ModifiedCount == 1;
     }
 
+    public async Task<Player?> Find(string pseudo, string passwordHash)
+    {
+        var filter = Builders<Player>.Filter.Eq(c => c.Pseudo, pseudo);
+        filter &= Builders<Player>.Filter.Eq(c => c.Password, passwordHash);
+
+        return await Collection.Find(filter).SingleOrDefaultAsync();
+    }
+
     public async Task<bool> UpdateCredentials(string id, string pseudo, string password, string email)
     {
         var filter = Builders<Player>.Filter.Eq("_id", id);

@@ -1,6 +1,4 @@
-﻿using ngchess.contracts.Players;
-using ngchess.contracts.Players.Commands;
-using Player = ngchess.domain.Player;
+﻿using Player = ngchess.domain.Player;
 using PlayerContract = ngchess.contracts.Players.Player;
 
 namespace ngchess.services.Mapping;

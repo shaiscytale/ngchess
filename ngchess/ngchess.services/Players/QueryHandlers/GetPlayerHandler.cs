@@ -1,7 +1,8 @@
 ﻿using MediatR;
+using ngchess.contracts.Players;
 using ngchess.contracts.Players.Queries;
 using ngchess.data;
-using ngchess.domain;
+using ngchess.services.Mapping;
 
 namespace ngchess.services.Players.QueryHandlers;
 
@@ -16,6 +17,7 @@ public class GetPlayerHandler : IRequestHandler<GetPlayerQuery, Player>
 
     public async Task<Player> Handle(GetPlayerQuery request, CancellationToken cancellationToken)
     {
-        return await _playerRepository.Get(request.PlayerId);
+        var player = await _playerRepository.Get(request.PlayerId);
+        return Mapper.Map(player);
     }
 }
