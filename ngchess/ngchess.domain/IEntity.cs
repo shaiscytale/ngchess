@@ -7,5 +7,5 @@ public interface IEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    string? Id { get; set; }
+    ObjectId Id { get; set; }
 }

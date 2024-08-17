@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MongoDB.Bson;
 using ngchess.contracts.Players;
 using ngchess.contracts.Players.Queries;
 using ngchess.data;
@@ -17,7 +18,10 @@ public class GetPlayerHandler : IRequestHandler<GetPlayerQuery, Player>
 
     public async Task<Player> Handle(GetPlayerQuery request, CancellationToken cancellationToken)
     {
-        var player = await _playerRepository.Get(request.PlayerId);
+        if (!ObjectId.TryParse(request.PlayerId, out var objectId))
+            throw new InvalidOperationException(nameof(ObjectId));
+
+        var player = await _playerRepository.Get(objectId);
         return Mapper.Map(player);
     }
 }

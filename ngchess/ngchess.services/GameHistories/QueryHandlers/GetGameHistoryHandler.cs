@@ -16,6 +16,8 @@ public class GetGameHistoryHandler : IRequestHandler<GetGameHistoryQuery, GameHi
 
     public async Task<GameHistory> Handle(GetGameHistoryQuery request, CancellationToken cancellationToken)
     {
-        return await _gameHistoryRepository.Get(request.GameId);
+        //return await _gameHistoryRepository.Get(request.GameId);
+
+        throw new NotImplementedException();
     }
 }

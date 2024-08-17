@@ -17,6 +17,6 @@ public class LoginHandler : IRequestHandler<LoginCommand, string?>
     {
         var player = await _playerRepository.Find(request.Pseudo, request.PasswordHash);
         
-        return player?.Id;
+        return player?.Id.ToString();
     }
 }

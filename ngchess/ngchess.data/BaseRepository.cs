@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using ngchess.data.Settings;
 using ngchess.domain;
@@ -19,16 +20,16 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     {
         await Collection.InsertOneAsync(item);
 
-        return item.Id!;
+        return item.Id!.ToString();
     }
 
-    public async Task<T> Get(string id)
+    public async Task<T> Get(ObjectId id)
     {
         var filter = Builders<T>.Filter.Eq("_id", id);
         return await Collection.Find(filter).SingleAsync();
     }
 
-    public async Task<T?> Find(string id)
+    public async Task<T?> Find(ObjectId id)
     {
         var filter = Builders<T>.Filter.Eq("_id", id);
 
@@ -40,9 +41,9 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
         return await Collection.Find(_ => true).ToListAsync();
     }
 
-    public abstract Task<bool> Update(string id, T item);
+    public abstract Task<bool> Update(ObjectId id, T item);
 
-    public async Task<bool> Delete(string id)
+    public async Task<bool> Delete(ObjectId id)
     {
         var filter = Builders<T>.Filter.Eq("_id", id);
         var result = await Collection.DeleteOneAsync(filter);

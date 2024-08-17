@@ -16,5 +16,5 @@ public class GameHistory : IEntity
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public ObjectId Id { get; set; }
 }

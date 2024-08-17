@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using ngchess.data.Settings;
 using ngchess.domain;
@@ -11,7 +12,7 @@ public class GameHistoryRepository : BaseRepository<GameHistory>, IGameHistoryRe
     {
     }
 
-    public override async Task<bool> Update(string id, GameHistory item)
+    public override async Task<bool> Update(ObjectId id, GameHistory item)
     {
         var filter = Builders<GameHistory>.Filter.Eq("_id", id);
 

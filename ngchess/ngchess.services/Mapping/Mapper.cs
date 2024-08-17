@@ -10,7 +10,7 @@ public static class Mapper
     {
         return new PlayerContract
         {
-            Id = player.Id,
+            Id = player.Id.ToString(),
             Firstname = player.Firstname,
             Lastname = player.Lastname,
             Pseudo = player.Pseudo,

@@ -15,10 +15,12 @@ public class SaveGameHistoryHandler : IRequestHandler<SaveGameHistoryCommand>
 
     public async Task Handle(SaveGameHistoryCommand request, CancellationToken cancellationToken)
     {
-        var existing = await _gameHistoryRepository.Find(request.GameHistory.Id);
-        if (existing != null)
-            await _gameHistoryRepository.Update(request.GameHistory.Id, request.GameHistory);
-        else
-            await _gameHistoryRepository.Create(request.GameHistory);
+        //var existing = await _gameHistoryRepository.Find(request.GameHistory.Id);
+        //if (existing != null)
+        //    await _gameHistoryRepository.Update(request.GameHistory.Id, request.GameHistory);
+        //else
+        //    await _gameHistoryRepository.Create(request.GameHistory);
+
+        throw new NotImplementedException();
     }
 }
