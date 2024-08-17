@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace ngchess.enumerations;
+
 public abstract class Enumeration<T> : Enumeration, IComparable where T : Enumeration<T>
 {
     private static readonly IDictionary<int, T> _allValues = new Dictionary<int, T>();

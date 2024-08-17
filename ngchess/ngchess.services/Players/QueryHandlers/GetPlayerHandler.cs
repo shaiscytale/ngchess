@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using MongoDB.Bson;
 using ngchess.contracts.Players.Queries;
 using ngchess.data;
 using ngchess.domain;

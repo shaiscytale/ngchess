@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Options;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using ngchess.data.Settings;
 using ngchess.domain;
@@ -9,6 +8,7 @@ namespace ngchess.data;
 public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity
 {
     protected readonly IMongoCollection<T> Collection;
+
     protected BaseRepository(IMongoClient client, IOptions<MongoDbSettings> settings)
     {
         var database = client.GetDatabase(settings.Value.DatabaseName);
@@ -41,21 +41,6 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
     }
 
     public abstract Task<bool> Update(string id, T item);
-
-    //public async Task<bool> Update(string id, T item)
-    //{
-    //    var filter = Builders<T>.Filter.Eq("_id", id);
-
-    //    // TODO: do some reflection here to update all properties of T
-    //    //var update = Builders<T>.Update
-    //    //    .Set(T => {});
-
-    //    //var result = await Collection.UpdateOneAsync(filter, update);
-
-    //    //return result.ModifiedCount == 1;
-
-    //    throw new NotImplementedException("GENERIC_UPDATE_NOT_NEEDED_FOR_NOW_AND_NEED_SOME_RESEARCH");
-    //}
 
     public async Task<bool> Delete(string id)
     {

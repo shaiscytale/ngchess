@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ngchess.data.Settings;
 
-namespace ngchess.data.Settings;
 public class MongoDbSettings
 {
     public string ConnectionString { get; set; }

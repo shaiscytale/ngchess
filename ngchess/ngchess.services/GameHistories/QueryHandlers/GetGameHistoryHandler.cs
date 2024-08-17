@@ -4,6 +4,7 @@ using ngchess.data;
 using ngchess.domain;
 
 namespace ngchess.services.GameHistories.QueryHandlers;
+
 public class GetGameHistoryHandler : IRequestHandler<GetGameHistoryQuery, GameHistory>
 {
     private readonly IGameHistoryRepository _gameHistoryRepository;

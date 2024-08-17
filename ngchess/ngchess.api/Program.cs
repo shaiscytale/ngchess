@@ -11,10 +11,7 @@ builder.Services.AddSwaggerGen();
 
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
-if (mongoDbSettings is null)
-{
-    throw new ArgumentNullException(nameof(mongoDbSettings));
-}
+if (mongoDbSettings is null) throw new ArgumentNullException(nameof(mongoDbSettings));
 
 builder.Services
     .ConfigureMediatR()

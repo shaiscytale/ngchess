@@ -1,5 +1,4 @@
-﻿
-using ngchess.enumerations;
+﻿using ngchess.enumerations;
 
 namespace ngchess.domain;
 
@@ -10,5 +9,4 @@ public class HyattMove
     public Color Color { get; set; }
     public string Code { get; set; }
     public int Points { get; set; }
-
 }

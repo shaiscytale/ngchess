@@ -4,6 +4,7 @@ using ngchess.data;
 using ngchess.domain;
 
 namespace ngchess.services.Players.QueryHandlers;
+
 public class GetAllPlayersHandler : IRequestHandler<GetAllPlayersQuery, IEnumerable<Player>>
 {
     private readonly IPlayerRepository _playerRepository;

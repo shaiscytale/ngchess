@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-
-namespace ngchess.data;
+﻿namespace ngchess.data;
 
 public interface IRepository<T> where T : class
 {

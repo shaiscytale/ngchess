@@ -9,10 +9,7 @@ public static class ServiceInjection
 {
     public static IServiceCollection ConfigureMediatR(this IServiceCollection services)
     {
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(typeof(MediatREntryPoint).Assembly);
-        });
+        services.AddMediatR(config => { config.RegisterServicesFromAssembly(typeof(MediatREntryPoint).Assembly); });
 
         return services;
     }
