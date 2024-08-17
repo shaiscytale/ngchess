@@ -33,4 +33,11 @@ public static class ServiceInjection
 
         return services;
     }
+
+    public static IServiceCollection InjectSettings(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.Configure<MongoDbSettings>(configuration.GetSection(nameof(MongoDbSettings)));
+
+        return services;
+    }
 }

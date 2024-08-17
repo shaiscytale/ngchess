@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ngchess.contracts\ngchess.contracts.csproj" />
+    <ProjectReference Include="..\ngchess.data\ngchess.data.csproj" />
   </ItemGroup>
 
 </Project>

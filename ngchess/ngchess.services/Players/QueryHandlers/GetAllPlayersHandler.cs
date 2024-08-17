@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using ngchess.contracts.Players.Queries;
+using ngchess.data;
 using ngchess.domain;
 
 namespace ngchess.services.Players.QueryHandlers;
-public class GetAllPlayersHandler : IRequestHandler<GetAllPlayersQuery, List<Player>>
+public class GetAllPlayersHandler : IRequestHandler<GetAllPlayersQuery, IEnumerable<Player>>
 {
-    public Task<List<Player>> Handle(GetAllPlayersQuery request, CancellationToken cancellationToken)
+    private readonly IPlayerRepository _playerRepository;
+
+    public GetAllPlayersHandler(IPlayerRepository playerRepository)
     {
-        throw new NotImplementedException();
+        _playerRepository = playerRepository;
+    }
+
+    public async Task<IEnumerable<Player>> Handle(GetAllPlayersQuery request, CancellationToken cancellationToken)
+    {
+        return await _playerRepository.GetAll();
     }
 }

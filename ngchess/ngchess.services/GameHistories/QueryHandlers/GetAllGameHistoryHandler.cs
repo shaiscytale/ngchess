@@ -1,13 +1,21 @@
 ﻿using MediatR;
 using ngchess.contracts.GameHistories.Queries;
+using ngchess.data;
 using ngchess.domain;
 
 namespace ngchess.services.GameHistories.QueryHandlers;
 
-public class GetAllGameHistoryHandler : IRequestHandler<GetAllGameHistoryQuery, List<GameHistory>>
+public class GetAllGameHistoryHandler : IRequestHandler<GetAllGameHistoryQuery, IEnumerable<GameHistory>>
 {
-    public Task<List<GameHistory>> Handle(GetAllGameHistoryQuery request, CancellationToken cancellationToken)
+    private readonly IGameHistoryRepository _gameHistoryRepository;
+
+    public GetAllGameHistoryHandler(IGameHistoryRepository gameHistoryRepository)
     {
-        throw new NotImplementedException();
+        _gameHistoryRepository = gameHistoryRepository;
+    }
+
+    public async Task<IEnumerable<GameHistory>> Handle(GetAllGameHistoryQuery request, CancellationToken cancellationToken)
+    {
+        return await _gameHistoryRepository.GetAll();
     }
 }

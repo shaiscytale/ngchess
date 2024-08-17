@@ -1,25 +1,14 @@
-using System.Reflection;
-using Microsoft.Extensions.Configuration;
-using MongoDB.Driver;
 using ngchess.api.Configuration;
 using ngchess.data.Settings;
-using ngchess.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//var configuration = new ConfigurationBuilder()
-//    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-//    .AddJsonFile("appsettings.json")
-//    .Build();
-
-builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
 var mongoDbSettings = builder.Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
 
 if (mongoDbSettings is null)
@@ -30,7 +19,8 @@ if (mongoDbSettings is null)
 builder.Services
     .ConfigureMediatR()
     .ConfigureMongoDb(mongoDbSettings)
-    .InjectRepositories();
+    .InjectRepositories()
+    .InjectSettings(builder.Configuration);
 
 
 var app = builder.Build();

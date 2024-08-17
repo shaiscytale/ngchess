@@ -1,13 +1,22 @@
 ﻿using MediatR;
+using MongoDB.Bson;
 using ngchess.contracts.Players.Queries;
+using ngchess.data;
 using ngchess.domain;
 
 namespace ngchess.services.Players.QueryHandlers;
 
 public class GetPlayerHandler : IRequestHandler<GetPlayerQuery, Player>
 {
-    public Task<Player> Handle(GetPlayerQuery request, CancellationToken cancellationToken)
+    private readonly IPlayerRepository _playerRepository;
+
+    public GetPlayerHandler(IPlayerRepository playerRepository)
     {
-        throw new NotImplementedException();
+        _playerRepository = playerRepository;
+    }
+
+    public async Task<Player> Handle(GetPlayerQuery request, CancellationToken cancellationToken)
+    {
+        return await _playerRepository.Get(new ObjectId(request.PlayerId));
     }
 }
