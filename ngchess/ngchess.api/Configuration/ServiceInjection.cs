@@ -1,5 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Driver;
 using ngchess.data;
+using ngchess.data.Settings;
 using ngchess.services;
 
 namespace ngchess.api.Configuration;
@@ -16,9 +18,9 @@ public static class ServiceInjection
         return services;
     }
 
-    public static IServiceCollection ConfigureMondoDb(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigureMongoDb(this IServiceCollection services, MongoDbSettings settings)
     {
-        var mongoClient = new MongoClient(configuration.GetConnectionString("MongoDb"));
+        var mongoClient = new MongoClient(settings.ConnectionString);
         services.AddSingleton<IMongoClient>(mongoClient);
 
         return services;

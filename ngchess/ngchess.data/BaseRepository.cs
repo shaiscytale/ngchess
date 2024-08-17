@@ -1,5 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using ngchess.data.Settings;
 using ngchess.domain;
 
 namespace ngchess.data;
@@ -7,9 +9,9 @@ namespace ngchess.data;
 public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntity
 {
     protected readonly IMongoCollection<T> Collection;
-    protected BaseRepository(IMongoClient client)
+    protected BaseRepository(IMongoClient client, IOptions<MongoDbSettings> settings)
     {
-        var database = client.GetDatabase("ngchess");
+        var database = client.GetDatabase(settings.Value.DatabaseName);
         Collection = database.GetCollection<T>(typeof(T).Name);
     }
 
