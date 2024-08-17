@@ -24,47 +24,42 @@ public abstract class BaseRepository<T> : IRepository<T> where T : class, IEntit
 
     public async Task<T> Get(string id)
     {
-        // marche
-        //var result = await Collection.Find(_ => true).ToListAsync();
-        //return result.Single(r => r.Id == id);
-
-        // marche pas
-        var filter = Builders<T>.Filter.Eq(c => c.Id, id);
+        var filter = Builders<T>.Filter.Eq("_id", id);
         return await Collection.Find(filter).SingleAsync();
     }
 
     public async Task<T?> Find(string id)
     {
-        var filter = Builders<T>.Filter.Eq(c => c.Id, id);
+        var filter = Builders<T>.Filter.Eq("_id", id);
 
         return await Collection.Find(filter).SingleOrDefaultAsync();
     }
 
     public async Task<IEnumerable<T>> GetAll()
     {
-        var result = await Collection.Find(_ => true).ToListAsync();
-
-        return result;
+        return await Collection.Find(_ => true).ToListAsync();
     }
 
-    public async Task<bool> Update(string id, T player)
-    {
-        var filter = Builders<T>.Filter.Eq(c => c.Id, id);
+    public abstract Task<bool> Update(string id, T item);
 
-        // TODO: do some reflection here to update all properties of T
-        //var update = Builders<T>.Update
-        //    .Set(T => {});
+    //public async Task<bool> Update(string id, T item)
+    //{
+    //    var filter = Builders<T>.Filter.Eq("_id", id);
 
-        //var result = await Collection.UpdateOneAsync(filter, update);
+    //    // TODO: do some reflection here to update all properties of T
+    //    //var update = Builders<T>.Update
+    //    //    .Set(T => {});
 
-        //return result.ModifiedCount == 1;
+    //    //var result = await Collection.UpdateOneAsync(filter, update);
 
-        throw new NotImplementedException("GENERIC_UPDATE_NOT_NEEDED_FOR_NOW_AND_NEED_SOME_RESEARCH");
-    }
+    //    //return result.ModifiedCount == 1;
+
+    //    throw new NotImplementedException("GENERIC_UPDATE_NOT_NEEDED_FOR_NOW_AND_NEED_SOME_RESEARCH");
+    //}
 
     public async Task<bool> Delete(string id)
     {
-        var filter = Builders<T>.Filter.Eq(c => c.Id, id);
+        var filter = Builders<T>.Filter.Eq("_id", id);
         var result = await Collection.DeleteOneAsync(filter);
 
         return result.DeletedCount == 1;

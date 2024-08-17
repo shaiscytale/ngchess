@@ -10,4 +10,16 @@ public class GameHistoryRepository : BaseRepository<GameHistory>, IGameHistoryRe
     public GameHistoryRepository(IMongoClient client, IOptions<MongoDbSettings> settings) : base(client, settings)
     {
     }
+
+    public override async Task<bool> Update(string id, GameHistory item)
+    {
+        var filter = Builders<GameHistory>.Filter.Eq("_id", id);
+
+        var update = Builders<GameHistory>.Update
+            .Set(c => c.Moves, item.Moves)
+            .Set(c => c.EndedOn, item.EndedOn);
+        var result = await Collection.UpdateOneAsync(filter, update);
+
+        return result.ModifiedCount == 1;
+    }
 }
