@@ -21,7 +21,7 @@ public class PlayerController : BaseController
     }
 
     [HttpGet]
-    public async Task<List<Player>> Get()
+    public async Task<IEnumerable<Player>> Get()
     {
         return await Mediator.Send(new GetAllPlayersQuery());
     }
