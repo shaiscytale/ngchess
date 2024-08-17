@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "66c09eb643c8298d2ef17c4e",
+    "Firstname": "John",
+    "Lastname": "Doe",
+    "Pseudo": "UnknownGuy",
+    "Rating": 1000
+  },
+  {
+    "_id": "66c09ee4804630e2b2e48452",
+    "Firstname": "Jane",
+    "Lastname": "Doe",
+    "Pseudo": "UnknownGirl",
+    "Rating": 1200
+  }
+]

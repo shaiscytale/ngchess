@@ -8,7 +8,7 @@ public class GameHistory : IEntity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId Id { get; set; }
+    public string? Id { get; set; }
     public Guid WhitePlayerId { get; set; }
     public Guid BlackPlayerId { get; set; }
     public GameType GameType { get; set; }

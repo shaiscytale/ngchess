@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using MongoDB.Bson;
 using ngchess.contracts.GameHistories.Queries;
 using ngchess.data;
 using ngchess.domain;
@@ -16,6 +15,6 @@ public class GetGameHistoryHandler : IRequestHandler<GetGameHistoryQuery, GameHi
 
     public async Task<GameHistory> Handle(GetGameHistoryQuery request, CancellationToken cancellationToken)
     {
-        return await _gameHistoryRepository.Get(new ObjectId(request.GameId));
+        return await _gameHistoryRepository.Get(request.GameId);
     }
 }

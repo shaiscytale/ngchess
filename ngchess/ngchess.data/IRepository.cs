@@ -4,10 +4,10 @@ namespace ngchess.data;
 
 public interface IRepository<T> where T : class
 {
-    Task<ObjectId> Create(T player);
-    Task<T> Get(ObjectId id);
-    Task<T?> Find(ObjectId id);
+    Task<string> Create(T player);
+    Task<T> Get(string id);
+    Task<T?> Find(string id);
     Task<IEnumerable<T>> GetAll();
-    Task<bool> Update(ObjectId id, T player);
-    Task<bool> Delete(ObjectId id);
+    Task<bool> Update(string id, T player);
+    Task<bool> Delete(string id);
 }
