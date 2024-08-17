@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.api", "ngchess.api\ngchess.api.csproj", "{02F5F42C-5559-493B-84BA-915A536819D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.services", "ngchess.services\ngchess.services.csproj", "{CEB91E63-465A-4D82-8D22-12555237E696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.contracts", "ngchess.contracts\ngchess.contracts.csproj", "{A8DE7D91-F7C3-4BA7-98BE-7A5FFFB5DEDF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.domain", "ngchess.domain\ngchess.domain.csproj", "{7E3DD5DB-DF0E-417B-9D3D-F06B04478CB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.enumerations", "ngchess.enumerations\ngchess.enumerations.csproj", "{4BAC5E2D-831F-4204-AE65-0800E9471FD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ngchess.data", "ngchess.data\ngchess.data.csproj", "{8F2A06FB-BDD8-4C15-9C50-87024B3A75C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02F5F42C-5559-493B-84BA-915A536819D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F5F42C-5559-493B-84BA-915A536819D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F5F42C-5559-493B-84BA-915A536819D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F5F42C-5559-493B-84BA-915A536819D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEB91E63-465A-4D82-8D22-12555237E696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEB91E63-465A-4D82-8D22-12555237E696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEB91E63-465A-4D82-8D22-12555237E696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEB91E63-465A-4D82-8D22-12555237E696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8DE7D91-F7C3-4BA7-98BE-7A5FFFB5DEDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8DE7D91-F7C3-4BA7-98BE-7A5FFFB5DEDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8DE7D91-F7C3-4BA7-98BE-7A5FFFB5DEDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8DE7D91-F7C3-4BA7-98BE-7A5FFFB5DEDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E3DD5DB-DF0E-417B-9D3D-F06B04478CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E3DD5DB-DF0E-417B-9D3D-F06B04478CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E3DD5DB-DF0E-417B-9D3D-F06B04478CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E3DD5DB-DF0E-417B-9D3D-F06B04478CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BAC5E2D-831F-4204-AE65-0800E9471FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BAC5E2D-831F-4204-AE65-0800E9471FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BAC5E2D-831F-4204-AE65-0800E9471FD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BAC5E2D-831F-4204-AE65-0800E9471FD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F2A06FB-BDD8-4C15-9C50-87024B3A75C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F2A06FB-BDD8-4C15-9C50-87024B3A75C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F2A06FB-BDD8-4C15-9C50-87024B3A75C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F2A06FB-BDD8-4C15-9C50-87024B3A75C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8512FA43-F552-4C08-9C55-C0CEB25D21DA}
+	EndGlobalSection
+EndGlobal
