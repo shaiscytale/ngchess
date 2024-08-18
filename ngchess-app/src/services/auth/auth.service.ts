@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 import { Player } from '../../models/players/player';
 
 export interface RegisterCommand {
@@ -23,6 +23,9 @@ export interface LoginCommand {
 export class AuthService {
 
   private baseUrl = 'https://localhost:7253';
+
+  private playerSubject: BehaviorSubject<Player | null> = new BehaviorSubject<Player | null>(this.getPlayerFromLocalStorage());
+
   private player: Player | null = null;
 
   constructor(private http: HttpClient) { }
@@ -41,7 +44,7 @@ export class AuthService {
   }
 
   setPlayer(player: Player): void {
-    this.player = player;
+    this.playerSubject.next(player);
     localStorage.setItem('player', JSON.stringify(player));
   }
 
@@ -55,20 +58,21 @@ export class AuthService {
     );
   }
 
-  getPlayer(): Player | null {
-    if (this.player) {
-      return this.player;
-    }
+  getPlayer(): Observable<Player | null> {
+    return this.playerSubject.asObservable();
+  }
+
+  private getPlayerFromLocalStorage(): Player | null {
     const playerData = localStorage.getItem('player');
     return playerData ? JSON.parse(playerData) : null;
   }
 
   isLoggedIn(): boolean {
-    return this.getPlayer() !== null;
+    return this.playerSubject.value !== null;
   }
 
   logout(): void {
-    this.player = null;
+    this.playerSubject.next(null);
     localStorage.removeItem('player');
   }
 }
