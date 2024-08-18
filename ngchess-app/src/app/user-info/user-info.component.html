@@ -1,4 +1,5 @@
 <div *ngIf="player" class="user-info">
-  <span>{{ player.pseudo }}</span>
-  <span>{{ player.rating }}</span>
+  <img [src]="defaultAvatarUrl" alt="{{ player.pseudo }}" class="user-avatar">
+  <span class="user-name">{{ player.pseudo }}</span>
+  <span>rating : {{ player.rating }}</span>
 </div>

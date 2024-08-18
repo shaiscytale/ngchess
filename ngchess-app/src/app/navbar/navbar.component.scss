@@ -15,6 +15,7 @@
   .navbar-list {
     list-style: none;
     display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
 
@@ -37,25 +38,13 @@
         }
       }
 
-      .navbar-link {
-        background-color: #444;
-      }
+      .navbar-user-info {
+        display: flex;
+        align-items: center;
 
-      .navbar-user-info .navbar-link {
-        background-color: #666;
-
-        &:hover {
-          background-color: #444;
+        app-user-info {
+          margin-right: 1rem;
         }
-      }
-    }
-
-    .navbar-user-info {
-      display: flex;
-      align-items: center;
-
-      app-user-info {
-        margin-right: 1rem;
       }
     }
   }

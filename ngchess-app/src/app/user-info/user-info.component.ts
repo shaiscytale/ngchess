@@ -11,4 +11,5 @@ import { CommonModule } from '@angular/common';
 })
 export class UserInfoComponent {
   @Input() player: Player | null = null;
+  defaultAvatarUrl: string = 'https://cdn.vectorstock.com/i/500p/27/54/anonymous-icon-privacy-concept-human-head-vector-27772754.jpg';
 }
