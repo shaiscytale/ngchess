@@ -1,6 +1,8 @@
 import { AppModule } from './../app.module';
 import { Component } from '@angular/core';
 import { AuthService, RegisterCommand } from '../../services/auth/auth.service';
+import { Router } from '@angular/router';
+import { Player } from '../../models/players/player';
 
 
 @Component({
@@ -17,13 +19,17 @@ export class RegisterComponent {
     Email: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   register() {
     this.authService.register(this.registerCommand).subscribe({
-      next: (v) => console.log(v),
-      error: (e) => console.error('Register failed', e),
-      complete: () => console.log('Register successful')
+      next: (player: Player) => {
+        console.log('Registration successful', player);
+        this.router.navigate(['/']);
+      },
+      error: (e) => console.error('Registration failed', e)
     });
   }
 }

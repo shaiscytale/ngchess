@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService, LoginCommand } from '../../services/auth/auth.service';
 import { AppModule } from './../app.module';
+import { Router } from '@angular/router';
+import { Player } from '../../models/players/player';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +15,17 @@ export class LoginComponent {
     PasswordHash: ''
   };
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   login() {
     this.authService.login(this.loginCommand).subscribe({
-      next: (v) => console.log(v),
-      error: (e) => console.error('Login failed', e),
-      complete: () => console.log('Login successful')
+      next: (player: Player) => {
+        console.log('Login successful', player);
+        this.router.navigate(['/']);
+      },
+      error: (e) => console.error('Login failed', e)
     });
   }
 }
