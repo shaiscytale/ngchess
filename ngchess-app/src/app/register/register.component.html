@@ -1,0 +1,18 @@
+<form (ngSubmit)="register()">
+  <label for="firstname">First Name:</label>
+  <input id="firstname" [(ngModel)]="registerCommand.Firstname" name="firstname" required>
+
+  <label for="lastname">Last Name:</label>
+  <input id="lastname" [(ngModel)]="registerCommand.Lastname" name="lastname" required>
+
+  <label for="pseudo">Pseudo:</label>
+  <input id="pseudo" [(ngModel)]="registerCommand.Pseudo" name="pseudo" required>
+
+  <label for="password">Password:</label>
+  <input id="password" type="password" [(ngModel)]="registerCommand.PasswordHash" name="password" required>
+
+  <label for="email">Email:</label>
+  <input id="email" type="email" [(ngModel)]="registerCommand.Email" name="email" required>
+
+  <button type="submit">Register</button>
+</form>

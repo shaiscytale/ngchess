@@ -1,3 +1,11 @@
-<button *ngIf="!gameStarted" (click)="createNewGame()">Lancer une nouvelle partie</button>
+<!-- <button *ngIf="!gameStarted" (click)="createNewGame()">Lancer une nouvelle partie</button> -->
 
-<game *ngIf="gameStarted"></game>
+<!-- <game *ngIf="gameStarted"></game> -->
+
+<h1>Welcome to NgChess</h1>
+<nav>
+  <a class="button" routerLink="/register">Register</a>
+  <a class="button" routerLink="/login">Login</a>
+</nav>
+<router-outlet></router-outlet>
+
