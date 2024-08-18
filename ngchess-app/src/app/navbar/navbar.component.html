@@ -1,0 +1,12 @@
+<nav>
+  <div *ngIf="!player">
+    <a *ngIf="!isRegisterPage()" class="button nav-link" routerLink="/register">Register</a>
+    <a *ngIf="!isLoginPage()" class="button nav-link" routerLink="/login">Login</a>
+  </div>
+  <div *ngIf="player">
+    <!-- <li *ngIf="!player"><a routerLink="/login">Login</a></li>
+    <li *ngIf="!player"><a routerLink="/register">Register</a></li> -->
+      <app-user-info [player]="player"></app-user-info>
+      <button (click)="logout()">Logout</button>
+  </div>
+</nav>
