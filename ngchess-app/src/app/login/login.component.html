@@ -1,9 +1,11 @@
-<form (ngSubmit)="login()">
-  <label for="pseudo">Pseudo:</label>
-  <input id="pseudo" [(ngModel)]="loginCommand.Pseudo" name="pseudo" required>
+<div  class="form-container">
+  <form (ngSubmit)="login()">
+    <label for="pseudo">Pseudo:</label>
+    <input id="pseudo" [(ngModel)]="loginCommand.Pseudo" name="pseudo" required>
 
-  <label for="password">Password:</label>
-  <input id="password" type="password" [(ngModel)]="loginCommand.PasswordHash" name="password" required>
+    <label for="password">Password:</label>
+    <input id="password" type="password" [(ngModel)]="loginCommand.PasswordHash" name="password" required>
 
-  <button type="submit">Login</button>
-</form>
+    <button type="submit">Login</button>
+  </form>
+</div>

@@ -2,10 +2,14 @@
 
 <!-- <game *ngIf="gameStarted"></game> -->
 
-<h1>Welcome to NgChess</h1>
+<h1 classe="title">Welcome to NgChess</h1>
 <nav>
-  <a class="button" routerLink="/register">Register</a>
-  <a class="button" routerLink="/login">Login</a>
+  <a *ngIf="!isRegisterPage()" class="button nav-link" routerLink="/register">Register</a>
+  <a *ngIf="!isLoginPage()" class="button nav-link" routerLink="/login">Login</a>
 </nav>
+<div class="info-text">
+  <p>Register to create a new account and start playing chess with others.</p>
+  <p>Login if you already have an account to continue your chess journey.</p>
+</div>
 <router-outlet></router-outlet>
 

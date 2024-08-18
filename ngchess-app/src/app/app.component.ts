@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { GameComponent } from './game/game.component';
 
@@ -13,7 +13,15 @@ import { GameComponent } from './game/game.component';
 export class AppComponent {
   title = 'ngchess-app';
 
-  constructor() {
+  isRegisterPage(): boolean {
+    return this.router.url === '/register';
+  }
+
+  isLoginPage(): boolean {
+    return this.router.url === '/login';
+  }
+
+  constructor(private router: Router) {
 
   }
 }
