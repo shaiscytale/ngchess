@@ -26,8 +26,6 @@ export class AuthService {
 
   private playerSubject: BehaviorSubject<Player | null> = new BehaviorSubject<Player | null>(this.getPlayerFromLocalStorage());
 
-  private player: Player | null = null;
-
   constructor(private http: HttpClient) { }
 
   register(registerCommand: RegisterCommand): Observable<Player> {

@@ -21,13 +21,13 @@ public class GameHistoryController : BaseController
     }
 
     [HttpGet]
-    public async Task<IEnumerable<GameHistory>> Get()
+    public async Task<IEnumerable<Game>> Get()
     {
         return await Mediator.Send(new GetAllGameHistoryQuery());
     }
 
     [HttpGet("{id}")]
-    public async Task<GameHistory> Get(string id)
+    public async Task<Game> Get(string id)
     {
         return await Mediator.Send(new GetGameHistoryQuery(id));
     }

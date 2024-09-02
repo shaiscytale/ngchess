@@ -15,9 +15,6 @@ import { HyattBoardComponent } from "../hyatt-board/hyatt-board.component";
   styleUrl: './game.component.scss'
 })
 export class GameComponent {
-  whitePlayer: string = '';
-  blackPlayer: string = '';
-
   currentTurnColor: Color = Color.white;
 
   game: Game | null = null;
@@ -27,9 +24,17 @@ export class GameComponent {
   }
 
   public startGame() {
-    console.log("Starting game between", this.whitePlayer, "and", this.blackPlayer);
-    this.game = new Game(this.whitePlayer, this.blackPlayer);
-    this.game.start();
+    // console.log("Starting game between", this.whitePlayer, "and", this.blackPlayer);
+    // this.game = new Game(this.whitePlayer, this.blackPlayer);
+    // this.game.start();
+  }
+
+  isGameLoaded() {
+    return this.game !== null;
+  }
+
+  isGameWaitingForPlayerTwo() {
+    return this.isGameLoaded() && (this.game?.whitePlayer === null || this.game?.blackPlayer === null);
   }
 
   handleTurnChanged(newTurnColor: Color) {

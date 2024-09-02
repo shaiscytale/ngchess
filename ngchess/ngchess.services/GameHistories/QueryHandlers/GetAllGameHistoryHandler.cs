@@ -5,7 +5,7 @@ using ngchess.domain;
 
 namespace ngchess.services.GameHistories.QueryHandlers;
 
-public class GetAllGameHistoryHandler : IRequestHandler<GetAllGameHistoryQuery, IEnumerable<GameHistory>>
+public class GetAllGameHistoryHandler : IRequestHandler<GetAllGameHistoryQuery, IEnumerable<Game>>
 {
     private readonly IGameHistoryRepository _gameHistoryRepository;
 
@@ -14,7 +14,7 @@ public class GetAllGameHistoryHandler : IRequestHandler<GetAllGameHistoryQuery, 
         _gameHistoryRepository = gameHistoryRepository;
     }
 
-    public async Task<IEnumerable<GameHistory>> Handle(GetAllGameHistoryQuery request,
+    public async Task<IEnumerable<Game>> Handle(GetAllGameHistoryQuery request,
         CancellationToken cancellationToken)
     {
         return await _gameHistoryRepository.GetAll();

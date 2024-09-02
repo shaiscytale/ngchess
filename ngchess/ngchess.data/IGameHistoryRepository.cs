@@ -2,6 +2,6 @@
 
 namespace ngchess.data;
 
-public interface IGameHistoryRepository : IRepository<GameHistory>
+public interface IGameHistoryRepository : IRepository<Game>
 {
 }

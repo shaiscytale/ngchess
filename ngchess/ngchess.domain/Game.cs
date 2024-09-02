@@ -4,10 +4,10 @@ using ngchess.enumerations;
 
 namespace ngchess.domain;
 
-public class GameHistory : IEntity
+public class Game : IEntity
 {
-    public Guid WhitePlayerId { get; set; }
-    public Guid BlackPlayerId { get; set; }
+    public ObjectId WhitePlayerId { get; set; }
+    public ObjectId BlackPlayerId { get; set; }
     public GameType GameType { get; set; }
     public TimeControl TimeControl { get; set; }
     public DateTimeOffset StartedOn { get; set; }

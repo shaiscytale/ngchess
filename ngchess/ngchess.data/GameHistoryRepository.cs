@@ -6,17 +6,17 @@ using ngchess.domain;
 
 namespace ngchess.data;
 
-public class GameHistoryRepository : BaseRepository<GameHistory>, IGameHistoryRepository
+public class GameHistoryRepository : BaseRepository<Game>, IGameHistoryRepository
 {
     public GameHistoryRepository(IMongoClient client, IOptions<MongoDbSettings> settings) : base(client, settings)
     {
     }
 
-    public override async Task<bool> Update(ObjectId id, GameHistory item)
+    public override async Task<bool> Update(ObjectId id, Game item)
     {
-        var filter = Builders<GameHistory>.Filter.Eq("_id", id);
+        var filter = Builders<Game>.Filter.Eq("_id", id);
 
-        var update = Builders<GameHistory>.Update
+        var update = Builders<Game>.Update
             .Set(c => c.Moves, item.Moves)
             .Set(c => c.EndedOn, item.EndedOn);
         var result = await Collection.UpdateOneAsync(filter, update);

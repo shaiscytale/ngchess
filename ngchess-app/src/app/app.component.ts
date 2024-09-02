@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class AppComponent {
   title = 'ngchess-app';
+  loading: boolean = false;
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();

@@ -5,5 +5,5 @@ namespace ngchess.contracts.GameHistories.Commands;
 
 public class SaveGameHistoryCommand : IRequest
 {
-    public GameHistory GameHistory { get; set; }
+    public Game Game { get; set; }
 }

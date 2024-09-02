@@ -1,10 +1,11 @@
 import { Board } from "../board/board";
 import { Color } from "../enums/Color.enum";
 import { HyattMove, Move } from "../pieces/Piece";
+import { Player } from "../players/player";
 
 export class Game {
-  whitePlayerName: string;
-  blackPlayerName: string;
+  whitePlayer: Player;
+  blackPlayer: Player;
 
   board: Board | null;
 
@@ -15,9 +16,9 @@ export class Game {
 
 
 
-  constructor(whitePlayerName: string, blackPlayerName: string) {
-    this.whitePlayerName = whitePlayerName;
-    this.blackPlayerName = blackPlayerName;
+  constructor(whitePlayer: Player, blackPlayer: Player) {
+    this.whitePlayer = whitePlayer;
+    this.blackPlayer = blackPlayer;
     this.moveHistory = [];
     this.hyattMoveHistory = [];
     this.board = null;

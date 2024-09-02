@@ -1,28 +1,17 @@
-<section *ngIf="!game?.isStarted()">
-  <form (submit)="startGame()">
-    <div>
-      <label for="whitePlayerName">Nom du joueur blanc :</label>
-      <input type="text" id="whitePlayerName" [(ngModel)]="whitePlayer" name="whitePlayer" required>
-    </div>
-    <div>
-      <label for="blackPlayerName">Nom du joueur noir :</label>
-      <input type="text" id="blackPlayerName" [(ngModel)]="blackPlayer" name="blackPlayer" required>
-    </div>
-    <button type="submit">Lancer la partie</button>
-  </form>
+<section *ngIf="!isGameLoaded()">
+  <h1>Chargement de la partie...</h1>
+</section>
+<section *ngIf="isGameWaitingForPlayerTwo()">
+  <h1>En attente du second joueur...</h1>
 </section>
 
+
 <section class="game-header" *ngIf="game?.isStarted()">
-  <h1>Partie en cours entre {{ game!.whitePlayerName }} et {{ game!.blackPlayerName }}</h1>
+  <h1>Partie en cours entre {{ game!.whitePlayer.pseudo }} et {{ game!.blackPlayer.pseudo }}</h1>
 </section>
 <section class="game-main" *ngIf="game?.isStarted()">
   <section class="game-board">
     <h2>tour des {{ isWhiteTurn() ? 'blancs' : 'noirs' }}</h2>
-    <!-- <chess-board
-      *ngIf="game?.isStarted()"
-      [board]="game?.board!"
-      (turnChanged)="handleTurnChanged($event)"
-      (moveDone)="handleMoveDone($event)"></chess-board> -->
     <hyatt-board
       *ngIf="game?.isStarted()"
       (turnChanged)="handleTurnChanged($event)"
